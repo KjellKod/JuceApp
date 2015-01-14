@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2013
+Project("{E1634F07-2E1F-5B32-7B24-D2A6A605A768}") = "JuceApp", "JuceApp.vcxproj", "{C8C8774C-0FF9-7CE1-714B-66E817AC0E70}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8C8774C-0FF9-7CE1-714B-66E817AC0E70}.Debug|x64.ActiveCfg = Debug|x64
+		{C8C8774C-0FF9-7CE1-714B-66E817AC0E70}.Debug|x64.Build.0 = Debug|x64
+		{C8C8774C-0FF9-7CE1-714B-66E817AC0E70}.Release|x64.ActiveCfg = Release|x64
+		{C8C8774C-0FF9-7CE1-714B-66E817AC0E70}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
