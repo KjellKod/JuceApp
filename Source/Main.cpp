@@ -59,6 +59,8 @@ public:
         // Add your application's shutdown code here..
 
         mainWindow = nullptr; // (deletes our window)
+		LOG(DEBUG) << "Goodbye World!";
+		logger_ = nullptr;
     }
 
     //==============================================================================
