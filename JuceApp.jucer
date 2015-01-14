@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="arrVBM" name="JuceApp" projectType="guiapp" version="1.0.0"
+              bundleIdentifier="com.yourcompany.JuceApp" includeBinaryInAppConfig="1"
+              jucerVersion="3.1.0">
+  <MAINGROUP id="nbWcBe" name="JuceApp">
+    <GROUP id="{3DEA6503-68DB-7874-85FB-21FADB53D7F9}" name="Source">
+      <GROUP id="{C3ED0559-9ED5-AAA9-E012-C5AED85909CC}" name="g3log">
+        <FILE id="mDYDVX" name="active.hpp" compile="0" resource="0" file="Source/g3log/active.hpp"/>
+        <FILE id="RTmNuA" name="crashhandler.hpp" compile="0" resource="0"
+              file="Source/g3log/crashhandler.hpp"/>
+        <FILE id="R2tu9w" name="crashhandler_windows.cpp" compile="1" resource="0"
+              file="Source/g3log/crashhandler_windows.cpp"/>
+        <FILE id="x1EUCb" name="g2filesink.cpp" compile="1" resource="0" file="Source/g3log/g2filesink.cpp"/>
+        <FILE id="O4X0A7" name="g2filesink.hpp" compile="0" resource="0" file="Source/g3log/g2filesink.hpp"/>
+        <FILE id="ugrRAF" name="g2filesinkhelper.ipp" compile="0" resource="1"
+              file="Source/g3log/g2filesinkhelper.ipp"/>
+        <FILE id="XUPLlf" name="g2future.hpp" compile="0" resource="0" file="Source/g3log/g2future.hpp"/>
+        <FILE id="isijgV" name="g2log.cpp" compile="1" resource="0" file="Source/g3log/g2log.cpp"/>
+        <FILE id="NvEZjn" name="g2log.hpp" compile="0" resource="0" file="Source/g3log/g2log.hpp"/>
+        <FILE id="dPfYsg" name="g2loglevels.cpp" compile="1" resource="0" file="Source/g3log/g2loglevels.cpp"/>
+        <FILE id="aJsOsX" name="g2loglevels.hpp" compile="0" resource="0" file="Source/g3log/g2loglevels.hpp"/>
+        <FILE id="aU0E88" name="g2logmessage.cpp" compile="1" resource="0"
+              file="Source/g3log/g2logmessage.cpp"/>
+        <FILE id="sHCE1B" name="g2logmessage.hpp" compile="0" resource="0"
+              file="Source/g3log/g2logmessage.hpp"/>
+        <FILE id="I8ewHA" name="g2logmessagecapture.cpp" compile="1" resource="0"
+              file="Source/g3log/g2logmessagecapture.cpp"/>
+        <FILE id="kTGTDc" name="g2logmessagecapture.hpp" compile="0" resource="0"
+              file="Source/g3log/g2logmessagecapture.hpp"/>
+        <FILE id="E4mV4u" name="g2logworker.cpp" compile="1" resource="0" file="Source/g3log/g2logworker.cpp"/>
+        <FILE id="HlxJFk" name="g2logworker.hpp" compile="0" resource="0" file="Source/g3log/g2logworker.hpp"/>
+        <FILE id="M73FEx" name="g2moveoncopy.hpp" compile="0" resource="0"
+              file="Source/g3log/g2moveoncopy.hpp"/>
+        <FILE id="ABDv7A" name="g2sink.hpp" compile="0" resource="0" file="Source/g3log/g2sink.hpp"/>
+        <FILE id="fZB6eT" name="g2sinkhandle.hpp" compile="0" resource="0"
+              file="Source/g3log/g2sinkhandle.hpp"/>
+        <FILE id="uCCz9k" name="g2sinkwrapper.hpp" compile="0" resource="0"
+              file="Source/g3log/g2sinkwrapper.hpp"/>
+        <FILE id="OW5LSz" name="g2time.cpp" compile="1" resource="0" file="Source/g3log/g2time.cpp"/>
+        <FILE id="HDVCnL" name="g2time.hpp" compile="0" resource="0" file="Source/g3log/g2time.hpp"/>
+        <FILE id="BFcp7J" name="shared_queue.hpp" compile="0" resource="0"
+              file="Source/g3log/shared_queue.hpp"/>
+        <FILE id="KbgrJ2" name="stacktrace_windows.cpp" compile="1" resource="0"
+              file="Source/g3log/stacktrace_windows.cpp"/>
+        <FILE id="DKOASr" name="stacktrace_windows.hpp" compile="0" resource="0"
+              file="Source/g3log/stacktrace_windows.hpp"/>
+        <FILE id="Eyk99b" name="std2_make_unique.hpp" compile="0" resource="0"
+              file="Source/g3log/std2_make_unique.hpp"/>
+        <FILE id="BKSwSO" name="stlpatch_future.hpp" compile="0" resource="0"
+              file="Source/g3log/stlpatch_future.hpp"/>
+        <FILE id="Ay1YQd" name="working_trace.hpp" compile="0" resource="0"
+              file="Source/g3log/working_trace.hpp"/>
+      </GROUP>
+      <FILE id="AJPc1J" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source/MainComponent.cpp"/>
+      <FILE id="Gb1422" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
+      <FILE id="Gq1K8X" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <VS2013 targetFolder="Builds/VisualStudio2013" extraDefs="_WINSOCK_DEPRECATED_NO_WARNINGS&#10;_CRT_SECURE_NO_WARNINGS&#10;_CRT_SECURE_NO_DEPRECATE">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="3" generateManifest="1" winArchitecture="x64"
+                       isDebug="1" optimisation="1" targetName="JuceApp" useRuntimeLibDLL="1"/>
+        <CONFIGURATION name="Release" winWarningLevel="3" generateManifest="1" winArchitecture="x64"
+                       isDebug="0" optimisation="2" targetName="JuceApp" useRuntimeLibDLL="1"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="modules"/>
+        <MODULEPATH id="juce_events" path="modules"/>
+        <MODULEPATH id="juce_graphics" path="modules"/>
+        <MODULEPATH id="juce_data_structures" path="modules"/>
+        <MODULEPATH id="juce_gui_basics" path="modules"/>
+        <MODULEPATH id="juce_gui_extra" path="modules"/>
+        <MODULEPATH id="juce_cryptography" path="modules"/>
+      </MODULEPATHS>
+    </VS2013>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULES id="juce_core" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_events" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
+  </MODULES>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>
