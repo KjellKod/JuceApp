@@ -52,6 +52,9 @@ public:
 		logger_ = new LogHolder(getApplicationName().toStdString(), desktop.getFullPathName().toStdString());
 
 		LOG(DEBUG) << "Hello World!";
+
+		int * p = nullptr;
+		//*p = 10;
     }
 
     void shutdown() override
