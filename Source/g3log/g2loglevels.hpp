@@ -14,9 +14,7 @@
 #pragma once
 
 #include <string>
-#ifdef DEBUG
-#undef DEBUG
-#endif 
+
 
 // Levels for logging, made so that it would be easy to change, remove, add levels -- KjellKod
 struct LEVELS {
@@ -31,7 +29,7 @@ struct LEVELS {
    const std::string text;
 };
 
-const LEVELS DEBUG{0, {"DEBUG"}}, INFO{DEBUG.value + 1, {"INFO"}},
+const LEVELS DBUG{0, {"DEBUG"}}, INFO{DBUG.value + 1, {"INFO"}},
 WARNING{INFO.value + 1, {"WARNING"}},
 // Insert here *any* extra logging levels that is needed
 // 1) Remember to update the FATAL initialization below
@@ -47,7 +45,7 @@ namespace g2 {
    }
 
 #ifdef G2_DYNAMIC_LOGGING
-   // Enable/Disable a log level {DEBUG,INFO,WARNING,FATAL}
+   // Enable/Disable a log level {DBUG,INFO,WARNING,FATAL}
    void setLogLevel(LEVELS level, bool enabled_status);
 #endif
    bool logLevel(LEVELS level);

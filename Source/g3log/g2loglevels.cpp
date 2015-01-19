@@ -33,7 +33,7 @@ namespace g2 {
    void setLogLevel(LEVELS log_level, bool enabled) {
       assert(internal::g_level_size == 4 && "Mismatch between number of logging levels and their use");
       int level = log_level.value;
-      CHECK((level >= DEBUG.value) && (level <= FATAL.value));
+      CHECK((level >= DBUG.value) && (level <= FATAL.value));
       internal::g_log_level_status[level].store(enabled, std::memory_order_release);
    }
 #endif
@@ -41,7 +41,7 @@ namespace g2 {
    bool logLevel(LEVELS log_level) {
 #ifdef G2_DYNAMIC_LOGGING
       int level = log_level.value;
-      CHECK((level >= DEBUG.value) && (level <= FATAL.value));
+      CHECK((level >= DBUG.value) && (level <= FATAL.value));
       bool status = (internal::g_log_level_status[level].load(std::memory_order_acquire));
       return status;
 #endif

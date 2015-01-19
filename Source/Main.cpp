@@ -51,7 +51,7 @@ public:
 		File desktop = File::getSpecialLocation(File::SpecialLocationType::userDesktopDirectory);
 		logger_ = new LogHolder(getApplicationName().toStdString(), desktop.getFullPathName().toStdString());
 
-		LOG(DEBUG) << "Hello World!";
+		LOG(DBUG) << "Hello World!";
 
 		int * p = nullptr;
 		//*p = 10;
@@ -62,7 +62,7 @@ public:
         // Add your application's shutdown code here..
 
         mainWindow = nullptr; // (deletes our window)
-		LOG(DEBUG) << "Goodbye World!";
+		LOG(DBUG) << "Goodbye World!";
 		logger_ = nullptr;
     }
 
