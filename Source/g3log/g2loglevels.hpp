@@ -13,6 +13,20 @@
 
 #pragma once
 
+
+// Users of Juce or other libraries might have a define DEBUG which clashes with 
+// the DEBUG logging level for G3log. In that case they can instead use the define
+//  "CHANGE_G3LOG_DEBUG_TO_DBUG" and G3log's logging level DEBUG is changed to be DBUG
+#if (defined(CHANGE_G3LOG_DEBUG_TO_DBUG))
+   #if (defined(DBUG))
+   #error "DEBUG is already defined elsewhere which clashes with G3Log's log level DEBUG"
+   #endif
+#else 
+   #if (defined(DEBUG))
+   #error "DEBUG is already defined elsewhere which clashes with G3Log's log level DEBUG"
+   #endif
+#endif 
+
 #include <string>
 
 
@@ -29,7 +43,14 @@ struct LEVELS {
    const std::string text;
 };
 
-const LEVELS DBUG{0, {"DEBUG"}}, INFO{DBUG.value + 1, {"INFO"}},
+static const int kDebugVaulue = 0;
+
+#if (defined(CHANGE_G3LOG_DEBUG_TO_DBUG))
+const LEVELS DBUG{kDebugVaulue, {"DEBUG"}}, 
+#else
+const LEVELS DEBUG{kDebugVaulue, {"DEBUG"}},
+#endif
+INFO{kDebugVaulue + 1, {"INFO"}},
 WARNING{INFO.value + 1, {"WARNING"}},
 // Insert here *any* extra logging levels that is needed
 // 1) Remember to update the FATAL initialization below
@@ -45,7 +66,7 @@ namespace g2 {
    }
 
 #ifdef G2_DYNAMIC_LOGGING
-   // Enable/Disable a log level {DBUG,INFO,WARNING,FATAL}
+   // Enable/Disable a log level {DEBUG,INFO,WARNING,FATAL}
    void setLogLevel(LEVELS level, bool enabled_status);
 #endif
    bool logLevel(LEVELS level);

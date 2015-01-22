@@ -149,7 +149,7 @@ void JUCE_CALLTYPE Thread::setCurrentThreadName (const String& name)
 
     __try
     {
-        RaiseException (0x406d1388 /*MS_VC_EXCEPTION*/, 0, sizeof (info) / sizeof (ULONG_PTR), (ULONG_PTR*) &info);
+       // RaiseException (0x406d1388 /*MS_VC_EXCEPTION*/, 0, sizeof (info) / sizeof (ULONG_PTR), (ULONG_PTR*) &info);
     }
     __except (EXCEPTION_CONTINUE_EXECUTION)
     {}

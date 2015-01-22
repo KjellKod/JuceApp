@@ -17,7 +17,8 @@
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-class MainContentComponent   : public Component
+class MainContentComponent   : public Component,
+							   public Timer
 {
 public:
     //==============================================================================
@@ -26,6 +27,7 @@ public:
 
     void paint (Graphics&);
     void resized();
+	void timerCallback() override;
 
 private:
     //==============================================================================
