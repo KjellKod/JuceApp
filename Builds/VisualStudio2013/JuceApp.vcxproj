@@ -979,6 +979,7 @@
     <ClCompile Include="..\..\modules\juce_gui_extra\juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\PoolJob.h"/>
     <ClInclude Include="..\..\Source\g3log\active.hpp"/>
     <ClInclude Include="..\..\Source\g3log\crashhandler.hpp"/>
     <ClInclude Include="..\..\Source\g3log\g2filesink.hpp"/>
