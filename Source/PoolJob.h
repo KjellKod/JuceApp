@@ -18,14 +18,14 @@ class PoolJob : public ThreadPoolJob
 	{
 		Thread::sleep(30);
 
-		LOG(DBUG) << "Count " << count_ << " handled from thread: " << Thread::getCurrentThreadId();
+		LOG(DBUG) << "Count " << count_ << " handled by thread: " << Thread::getCurrentThreadId();
 		
 		if (count_ > 20)
 		{
 			int * p = nullptr;
 			*p = 10;
 		}
-		return jobNeedsRunningAgain;
+		return jobHasFinished;
 	}
 
 	void removedFromQueue()

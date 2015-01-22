@@ -31,13 +31,11 @@ void MainContentComponent::timerCallback()
 {
 	static int count = 0;
 
-	LOG(DBUG) << count++;
-
 	/*if (count > 400)
 	{
 		int * p = nullptr;
 		*p = 10;
 	}*/
 
-	pool_.addJob( new PoolJob(count), false);
+	pool_.addJob( new PoolJob(count++), true);
 }
