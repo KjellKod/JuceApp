@@ -1,18 +1,12 @@
-/*
-  ==============================================================================
-
-    This file was auto-generated!
-
-  ==============================================================================
-*/
 
 #include "MainComponent.h"
+#include "PoolJob.h"
 
-
-//==============================================================================
 MainContentComponent::MainContentComponent()
+	: pool_(3)
 {
     setSize (600, 400);
+	startTimer(50);
 }
 
 MainContentComponent::~MainContentComponent()
@@ -30,7 +24,18 @@ void MainContentComponent::paint (Graphics& g)
 
 void MainContentComponent::resized()
 {
-    // This is called when the MainContentComponent is resized.
-    // If you add any child components, this is where you should
-    // update their positions.
+   
+}
+
+void MainContentComponent::timerCallback() 
+{
+	static int count = 0;
+
+	/*if (count > 400)
+	{
+		int * p = nullptr;
+		*p = 10;
+	}*/
+
+	pool_.addJob( new PoolJob(count++), true);
 }

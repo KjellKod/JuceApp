@@ -1161,6 +1161,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\PoolJob.h">
+      <Filter>JuceApp\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\g3log\active.hpp">
       <Filter>JuceApp\Source\g3log</Filter>
     </ClInclude>
