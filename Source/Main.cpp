@@ -13,6 +13,7 @@
 
 #include "g3log/g2logworker.hpp"
 #include "g3log/g2log.hpp"
+#include "g3log/g2logmessage.hpp"
 
 struct LogHolder
 {
@@ -30,43 +31,46 @@ struct LogHolder
 }; // end class LogHolder
 
 
-//==============================================================================
 class JuceAppApplication  : public JUCEApplication
 {
 public:
-    //==============================================================================
+    
     JuceAppApplication() {}
 
     const String getApplicationName() override       { return ProjectInfo::projectName; }
     const String getApplicationVersion() override    { return ProjectInfo::versionString; }
     bool moreThanOneInstanceAllowed() override       { return true; }
 
-    //==============================================================================
     void initialise (const String& commandLine) override
     {
-        // This method is where you should put your application's initialisation code..
-
         mainWindow = new MainWindow (getApplicationName());
 
 		File desktop = File::getSpecialLocation(File::SpecialLocationType::userDesktopDirectory);
 		logger_ = new LogHolder(getApplicationName().toStdString(), desktop.getFullPathName().toStdString());
 
-		LOG(DBUG) << "Hello World!";
+		//g2::internal::setFatalExitHandler(&JuceAppApplication::onFatalError);
 
-		int * p = nullptr;
-		//*p = 10;
+		LOG(DBUG) << "Hello World!";
     }
 
-    void shutdown() override
-    {
-        // Add your application's shutdown code here..
+	static void onFatalError(g2::FatalMessagePtr fatal_message)
+	{
+		LOG(WARNING) << fatal_message.get()->toString() <<  " : " << fatal_message.get()->_signal_id;
+		g2::LogMessagePtr message{ fatal_message.release() };
+		g2::internal::pushMessageToLogger(message); 
 
-        mainWindow = nullptr; // (deletes our window)
+		LOG(FATAL) << "Fatal crash";
+	}
+
+    void shutdown() override
+	{
+        mainWindow = nullptr; 
+
 		LOG(DBUG) << "Goodbye World!";
 		logger_ = nullptr;
     }
 
-    //==============================================================================
+
     void systemRequestedQuit() override
     {
         // This is called when the app is being asked to quit: you can ignore this
@@ -81,7 +85,7 @@ public:
         // the other instance's command-line arguments were.
     }
 
-    //==============================================================================
+    
     /*
         This class implements the desktop window that contains an instance of
         our MainContentComponent class.
@@ -124,6 +128,5 @@ private:
 	ScopedPointer<LogHolder> logger_;
 };
 
-//==============================================================================
 // This macro generates the main() routine that launches the app.
 START_JUCE_APPLICATION (JuceAppApplication)
