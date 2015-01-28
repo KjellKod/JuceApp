@@ -29,16 +29,16 @@ class PoolJob : public ThreadPoolJob
 			/*LOG(DBUG) << "Exit by SIGABRT";
 			raise(SIGABRT);
 			LOG(DBUG) << "Exit by SIGFPE";
-			raise(SIGFPE);
+			raise(SIGFPE);*/
 			LOG(DBUG) << "Exit by SIGSEGV";
 			raise(SIGSEGV);
-			LOG(DBUG) << "Exit by SIGILL";
-			raise(SIGILL);*/
+			/*LOG(DBUG) << "Exit by SIGILL";
+			raise(SIGILL);
 			LOG(DBUG) << "Exit by SIGTERM";
 			raise(SIGTERM);
 			LOG(DBUG) << "Exit by Access Violation";
-			/*int * p = nullptr;
-			*p = 10;*/
+			int * p = nullptr;
+			*p = 10; */
 
 			LOG(WARNING) << "Expected to have died by now...";
 

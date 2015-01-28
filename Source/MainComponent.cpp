@@ -22,7 +22,7 @@ MainContentComponent::MainContentComponent()
 	: pool_(3)
 {
     setSize (600, 400);
-	startTimer(50);
+	startTimer(250);  // was 50  ... now with longer interval the stack dump is written
 }
 
 MainContentComponent::~MainContentComponent()
@@ -47,16 +47,20 @@ void MainContentComponent::timerCallback()
 {
 	static int count = 0;
 
-	/*if (count++ > 100)
+	try
 	{
-		int * p = nullptr;
-		*p = 10;
-	}*/
-
-	//pool_.addJob( new PoolJob(count++), true);
-
-	auto dieInNearFuture = reallyAsync(fatalFunction);
+		auto dieInNearFuture = reallyAsync(fatalFunction);
+		//pool_.addJob(new PoolJob(count++), true);
+	}
+	catch (std::exception & e)
+	{
+		LOG(WARNING) << e.what();
+		//dieInNearFuture.wait();
+	}
+	catch (...)
+	{
+		LOG(WARNING) << "Unknown exception";
+		//dieInNearFuture.wait();
+	}
 	
-	// if we don't wait for the future then there is no stack dump
-	dieInNearFuture.wait();
 }
