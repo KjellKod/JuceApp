@@ -55,8 +55,8 @@ public:
 
 	static void onFatalError(g2::FatalMessagePtr fatal_message)
 	{
-		LOG(WARNING) << fatal_message.get()->toString() <<  " : " << fatal_message.get()->_signal_id;
-      std::cout << "HURRAY,.. my own implementation of Fatal Error Handling";
+	  //LOG(WARNING) << fatal_message.get()->toString() <<  " : " << fatal_message.get()->_signal_id;
+     // std::cout << "HURRAY,.. my own implementation of Fatal Error Handling";
       // doing stuff that is important... saving work etc
       //
       //
