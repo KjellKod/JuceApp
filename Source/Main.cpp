@@ -48,7 +48,7 @@ public:
 		File desktop = File::getSpecialLocation(File::SpecialLocationType::userDesktopDirectory);
 		logger_ = new LogHolder(getApplicationName().toStdString(), desktop.getFullPathName().toStdString());
 
-		//g2::internal::setFatalExitHandler(&JuceAppApplication::onFatalError);
+		g2::internal::setFatalExitHandler(&JuceAppApplication::onFatalError);
 
 		LOG(DBUG) << "Hello World!";
     }
@@ -56,10 +56,13 @@ public:
 	static void onFatalError(g2::FatalMessagePtr fatal_message)
 	{
 		LOG(WARNING) << fatal_message.get()->toString() <<  " : " << fatal_message.get()->_signal_id;
-		g2::LogMessagePtr message{ fatal_message.release() };
-		g2::internal::pushMessageToLogger(message); 
-
-		LOG(FATAL) << "Fatal crash";
+      std::cout << "HURRAY,.. my own implementation of Fatal Error Handling";
+      // doing stuff that is important... saving work etc
+      //
+      //
+      
+      // now ready to exit, instead of reinventing the wheel we do it the g3log way
+      g2::internal::pushFatalMessageToLogger(fatal_message);
 	}
 
     void shutdown() override
