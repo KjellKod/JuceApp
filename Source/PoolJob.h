@@ -80,11 +80,12 @@ class PoolJob : public ThreadPoolJob
 
 			case CrashType::IllegalPrintf:
 				LOG(DBUG) << "Impending doom due to illeteracy";
-				LOGF(INFO, "2nd attempt at ILLEGAL PRINTF_SYNTAX %d EXAMPLE. %s %s", "hello", 1);
+				LOGF(DBUG, "2nd attempt at ILLEGAL PRINTF_SYNTAX %d EXAMPLE. %s %s", "hello", 1);
 				break;
 
 			case CrashType::OutOfBoundsArrayIndexing:
 			{
+				LOG(DBUG) << "Exit by out of bounds array index";
 				std::vector<int> v;
 				v[0] = 5;
 				break;
@@ -93,13 +94,14 @@ class PoolJob : public ThreadPoolJob
 			case CrashType::AccessViolation:
 			{
 				char* ptr = 0;
-				LOG(INFO) << "Death by access violation is imminent";
+				LOG(DBUG) << "Death by access violation is imminent";
 				*ptr = 0;
 				break;
 			}
 				
 			case CrashType::RaiseSIGABRTAndAccessViolation:
 			{
+				LOG(DBUG) << "Exit by calling RaiseSIGABRT and AccessViolation";
 				auto f1 = std::async(std::launch::async, &RaiseSIGABRT);
 				auto f2 = std::async(std::launch::async, &AccessViolation);
 				f1.wait();
