@@ -36,6 +36,8 @@ public:
 
     void initialise (const String& commandLine) override
     {
+		LookAndFeel::setDefaultLookAndFeel(&lookAndFeel_);
+
         mainWindow = new MainWindow (getApplicationName());
 
 		File desktop = File::getSpecialLocation(File::SpecialLocationType::userDesktopDirectory);
@@ -64,8 +66,6 @@ public:
 										 "Please save your work and exit this application");
 		
 		  LOG(WARNING) << "App has crashed";
-		 // std::cout << "HURRAY,.. my own implementation of Fatal Error Handling";
-		  // doing stuff that is important... saving work etc
 
 		  File desktop = File::getSpecialLocation(File::SpecialLocationType::userDesktopDirectory);
 		  String path = desktop.getFullPathName() + File::separatorString + SAVED_WORK;
@@ -73,8 +73,9 @@ public:
 		  if (!save.exists())
 			  save.create();
 
-		  save.appendText("My saved work");
-		  save.appendText(fatal_message.get()->toString());
+		  save.appendText("Saving work");
+		  for (int i = 0; i < 10; i++)
+			 save.appendText(fatal_message.get()->toString());
 
 		  // now ready to exit, instead of reinventing the wheel we do it the g3log way
 		  g2::internal::pushFatalMessageToLogger(fatal_message);
@@ -106,7 +107,7 @@ public:
     
     /*
         This class implements the desktop window that contains an instance of
-        our MainContentComponent class.
+        our MainComponent class.
     */
     class MainWindow    : public DocumentWindow
     {
@@ -116,7 +117,7 @@ public:
                                                     DocumentWindow::allButtons)
         {
             setUsingNativeTitleBar (true);
-            setContentOwned (new MainContentComponent(), true);
+            setContentOwned (new MainComponent(), true);
 
             centreWithSize (getWidth(), getHeight());
             setVisible (true);
@@ -142,6 +143,7 @@ public:
     };
 
 private:
+	LookAndFeel_V3 lookAndFeel_;
     ScopedPointer<MainWindow> mainWindow;
 	ScopedPointer<LogHolder> logger_;
 };

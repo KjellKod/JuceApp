@@ -2,65 +2,132 @@
 #include "MainComponent.h"
 #include "PoolJob.h"
 
-// from Scott Meyers book 
-template<typename F, typename... Ts>
-std::future<typename std::result_of<F(Ts...)>::type> reallyAsync(F&& f, Ts&&... params)
+MainComponent::MainComponent()
+	: menuBar(this),
+	  crashButton_("Crash"), 
+	  startButton_("Start"),
+	  intervalLabel_("intervalLabel_", "Timer interval(ms)"),
+	  pool_(3)
 {
-	return std::async(std::launch::async, std::forward<F>(f), std::forward<Ts>(params)...);
+	addAndMakeVisible(&menuBar);
+
+	intervalSlider_.setRange(0.0, 1000.0);
+	intervalSlider_.setValue(DEFAULT_INTERVAL);
+	intervalLabel_.setColour(Label::ColourIds::textColourId, Colours::white);
+
+	crashButton_.addListener(this);
+	startButton_.addListener(this);
+	intervalSlider_.addListener(this);
+
+	addAndMakeVisible(&crashButton_);
+	addAndMakeVisible(&startButton_);
+	addAndMakeVisible(&intervalSlider_);
+	addAndMakeVisible(&intervalLabel_);
+
+    setSize (490, 130);
 }
 
-void fatalFunction()
-{
-	LOG(DBUG) << "Access violation coming";
-	//raise(SIGSEGV);
-
-	int * p = nullptr;
-	*p = 10;
-}
-
-MainContentComponent::MainContentComponent()
-	: pool_(3)
-{
-    setSize (600, 400);
-	startTimer(250);  // was 50  ... now with longer interval the stack dump is written
-}
-
-MainContentComponent::~MainContentComponent()
+MainComponent::~MainComponent()
 {
 }
 
-void MainContentComponent::paint (Graphics& g)
+void MainComponent::paint (Graphics& g)
 {
-    g.fillAll (Colour (0xff001F36));
-
-    g.setFont (Font (16.0f));
-    g.setColour (Colours::white);
-    g.drawText ("Hello World!", getLocalBounds(), Justification::centred, true);
+    g.fillAll (Colour (Colours::darkgrey));
 }
 
-void MainContentComponent::resized()
+void MainComponent::resized()
 {
-   
+	menuBar.setBounds(0, 0, getWidth(), 20);
+
+	int textH = 24;
+	int topMargin = 60;
+
+	intervalLabel_.setBounds(10, topMargin, 100, textH);
+	intervalSlider_.setBounds(112, topMargin, 200, textH);
+	startButton_.setBounds(335, topMargin, 60, textH);
+	crashButton_.setBounds(410, topMargin, 60, textH);
 }
 
-void MainContentComponent::timerCallback() 
+StringArray MainComponent::getMenuBarNames()
 {
-	static int count = 0;
+	const char* menuNames[] = { "Crash type",0 };
+	 
+	return StringArray(menuNames);
+}
 
-	try
+PopupMenu MainComponent::getMenuForIndex(int index, const String & name)
+{
+	PopupMenu menu;
+
+	if (name == "Crash type")
 	{
-		auto dieInNearFuture = reallyAsync(fatalFunction);
-		//pool_.addJob(new PoolJob(count++), true);
-	}
-	catch (std::exception & e)
-	{
-		LOG(WARNING) << e.what();
-		//dieInNearFuture.wait();
-	}
-	catch (...)
-	{
-		LOG(WARNING) << "Unknown exception";
-		//dieInNearFuture.wait();
+		menu.addItem(ABRT, "SIGABRT - Abnormal termination");
+		menu.addItem(FPE, "SIGFPE - Floating-point error");
+		menu.addItem(SEGV, "SIGSEGV - Illegal storage access");
+		menu.addItem(ILL, "SIGILL - Illegal instruction");
+		menu.addItem(TERM, "SIGTERM - Termination request");
+		menu.addItem(DivisionByZero, "Division by zero");
+		menu.addItem(IllegalPrintf, "Illegal printf");
+		menu.addItem(OutOfBoundsArrayIndexing, "Out of bounds array indexing");
+		menu.addItem(AccessViolation, "Access violation");
+		menu.addItem(RaiseSIGABRTAndAccessViolation, "Raise SIGABRT and access violation");
 	}
 	
+	return menu;
+}
+
+void MainComponent::menuItemSelected(int menuID, int index)
+{
+	switch (menuID)
+	{
+		case ABRT:
+		case FPE:
+		case SEGV:
+		case ILL:
+		case TERM:
+		case DivisionByZero:
+		case IllegalPrintf:
+		case OutOfBoundsArrayIndexing:
+		case AccessViolation:
+		case RaiseSIGABRTAndAccessViolation:
+			fatalChoice_ = menuID;
+			state_ = State::Uncrashable;
+			break;
+
+		default:
+			jassertfalse;
+	}
+}
+
+void MainComponent::timerCallback() 
+{
+	pool_.addJob(new PoolJob(fatalChoice_, state_), true);
+}
+
+void MainComponent::buttonClicked(Button* button)
+{
+	if (&crashButton_ == button)
+		state_ = State::Crashable;
+
+	if (&startButton_ == button)
+	{
+		if (isTimerRunning())
+			stopTimer();
+
+		state_ = State::Uncrashable;
+		startTimer(timerInterval_);
+	}
+}
+
+void MainComponent::sliderValueChanged(Slider* slider)
+{
+	state_ = State::Uncrashable;
+
+	if (&intervalSlider_ == slider) 
+	{
+		double interval = floor( slider->getValue() );
+		slider->setValue(interval);
+		timerInterval_ = (int)interval;
+	}
 }
