@@ -5,6 +5,9 @@
               jucerVersion="3.1.0" defines="CHANGE_G3LOG_DEBUG_TO_DBUG  &#10;G2_DYNAMIC_LOGGING">
   <MAINGROUP id="nbWcBe" name="JuceApp">
     <GROUP id="{3DEA6503-68DB-7874-85FB-21FADB53D7F9}" name="Source">
+      <GROUP id="{8C130F43-5721-1EFB-4DE0-E9A3759EFDC2}" name="threadPool">
+        <FILE id="YQF3AU" name="ThreadPool.h" compile="0" resource="0" file="Source/threadPool/ThreadPool.h"/>
+      </GROUP>
       <FILE id="Bopv6z" name="PoolJob.h" compile="0" resource="0" file="Source/PoolJob.h"/>
       <GROUP id="{C3ED0559-9ED5-AAA9-E012-C5AED85909CC}" name="g3log">
         <FILE id="XUbvXQ" name="active.hpp" compile="0" resource="0" file="Source/g3log/active.hpp"/>

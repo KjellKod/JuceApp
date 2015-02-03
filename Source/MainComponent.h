@@ -1,5 +1,6 @@
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "threadPool/ThreadPool.h"
 
 class MainComponent : public Component,
 					  public Timer,
@@ -59,7 +60,8 @@ class MainComponent : public Component,
 	Slider intervalSlider_;
 	Label intervalLabel_;
 
-	ThreadPool pool_;
+	//ThreadPool pool_;
+	StdThreadPool pool_;
 	int fatalChoice_ = 0;
 	State state_ = State::Uncrashable;
 	int timerInterval_ = DEFAULT_INTERVAL;
