@@ -999,7 +999,6 @@
     <ClInclude Include="..\..\Source\g3log\stacktrace_windows.hpp"/>
     <ClInclude Include="..\..\Source\g3log\std2_make_unique.hpp"/>
     <ClInclude Include="..\..\Source\g3log\stlpatch_future.hpp"/>
-    <ClInclude Include="..\..\Source\g3log\working_trace.hpp"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="..\..\modules\juce_core\text\juce_CharacterFunctions.h"/>
     <ClInclude Include="..\..\modules\juce_core\text\juce_CharPointer_ASCII.h"/>

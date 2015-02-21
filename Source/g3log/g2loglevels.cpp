@@ -40,13 +40,13 @@ namespace g2 {
 #ifdef G2_DYNAMIC_LOGGING
       // All levels are by default ON: i.e. for DEBUG, INFO, WARNING, FATAL
       const int g_level_size{FATAL.value + 1};
-      std::atomic<bool> g_log_level_status[4]{{true},{true},{true},{true}};
+	  std::atomic<bool> g_log_level_status[6]{{true}, { true }, { true }, { true }, { true }, { true }};
 #endif	
    } // internal
 
 #ifdef G2_DYNAMIC_LOGGING
    void setLogLevel(LEVELS log_level, bool enabled) {
-      assert(internal::g_level_size == 4 && "Mismatch between number of logging levels and their use");
+      assert(internal::g_level_size == 6 && "Mismatch between number of logging levels and their use");
       int level = log_level.value;
       CHECK((level >= g2::kDebugVaulue) && (level <= FATAL.value));
       internal::g_log_level_status[level].store(enabled, std::memory_order_release);

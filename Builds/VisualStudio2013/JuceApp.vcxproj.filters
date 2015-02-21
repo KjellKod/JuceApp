@@ -1224,9 +1224,6 @@
     <ClInclude Include="..\..\Source\g3log\stlpatch_future.hpp">
       <Filter>JuceApp\Source\g3log</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\working_trace.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\MainComponent.h">
       <Filter>JuceApp\Source</Filter>
     </ClInclude>

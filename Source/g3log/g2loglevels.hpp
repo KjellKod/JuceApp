@@ -63,12 +63,14 @@ const LEVELS DEBUG {
    g2::kDebugVaulue, {"DEBUG"}
 },
 #endif
-INFO {g2::kDebugVaulue + 1, {"INFO"}},
-WARNING {INFO.value + 1, {"WARNING"}},
+INFO{ g2::kDebugVaulue + 1, { "INFO" } },
+WARNING{ INFO.value + 1, { "WARNING" } },
+TESTING{ WARNING.value + 1, { "TESTING" } },
+CRITICAL{ TESTING.value + 1, { "CRITICAL" } },
 // Insert here *any* extra logging levels that is needed
 // 1) Remember to update the FATAL initialization below
 // 2) Remember to update the initialization of "g2loglevels.cpp/g_log_level_status"
-FATAL {WARNING.value + 1, {"FATAL"}};
+FATAL{ CRITICAL.value + 1, { "FATAL" } };
 
 
 namespace g2 {
