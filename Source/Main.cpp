@@ -54,7 +54,7 @@ public:
 
 		logger_ = new LogHolder(getApplicationName().toStdString(), desktop.getFullPathName().toStdString());
 
-		g2::internal::setFatalExitHandler(&JuceAppApplication::onFatalError);
+		g2::setFatalExitHandler(&JuceAppApplication::onFatalError);
 
 		LOG(DBUG) << "Hello World!";
     }
