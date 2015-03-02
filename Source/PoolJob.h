@@ -122,8 +122,6 @@ class PoolJob : public ThreadPoolJob
 };
 
 
-
-
 static void poolFunc(int fatalChoice, CrashState state)
 {
 	Thread::sleep(30);
