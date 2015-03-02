@@ -1,0 +1,22 @@
+{
+  "id":             "g3logger",
+  "name":           "g3logger classes",
+  "version":        "3.0.5",
+  "description":    "g3logger API",
+  "website":        "http://www.hurleyworks.com",
+  "license":        "ISC Permissive",
+
+  "dependencies":   [ { "id": "juce_core",   "version": "matching" } ],
+
+  "include":        "g3logger.h",
+
+  "compile":        [ { "file": "g3logger.cpp", "target": "! xcode" },
+                      { "file": "g3logger.mm",  "target": "xcode" } ],
+
+  "browse":         [ "basics/*",
+					  "cmd/*",
+					  "core/*",
+					  "memory/*",
+					  "time/*",
+					  "tools/*"],
+}
