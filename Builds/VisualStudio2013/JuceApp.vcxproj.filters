@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="JuceApp">
@@ -10,11 +11,14 @@
     <Filter Include="JuceApp\Source\threadPool">
       <UniqueIdentifier>{D8A24F40-E4BF-F408-2840-724BFAFCAD09}</UniqueIdentifier>
     </Filter>
-    <Filter Include="JuceApp\Source\g3log">
-      <UniqueIdentifier>{D48C3014-7336-F4BA-2E71-9EE1272B340C}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Juce Modules">
       <UniqueIdentifier>{422C46B7-0467-2DB0-BF3C-16DFCAFD69AC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Juce Modules\g3logger">
+      <UniqueIdentifier>{8BF501C6-5248-83AF-A1CD-B6B0B1637FE7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Juce Modules\g3logger\core">
+      <UniqueIdentifier>{60FA4EB4-6AA9-BB42-D0F5-248B8D909C2D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Juce Modules\juce_core">
       <UniqueIdentifier>{95CA1506-2B94-0DEE-0C8D-85EDEBBC4E88}</UniqueIdentifier>
@@ -216,38 +220,41 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\g3log\crashhandler_windows.cpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\g3log\g2filesink.cpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\g3log\g2log.cpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\g3log\g2loglevels.cpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\g3log\g2logmessage.cpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\g3log\g2logmessagecapture.cpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\g3log\g2logworker.cpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\g3log\g2time.cpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\g3log\stacktrace_windows.cpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
       <Filter>JuceApp\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Main.cpp">
       <Filter>JuceApp\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\g3logger\core\crashhandler_unix.cpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\g3logger\core\crashhandler_windows.cpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\g3logger\core\g2filesink.cpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\g3logger\core\g2log.cpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\g3logger\core\g2loglevels.cpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\g3logger\core\g2logmessage.cpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\g3logger\core\g2logmessagecapture.cpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\g3logger\core\g2logworker.cpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\g3logger\core\g2time.cpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\g3logger\core\stacktrace_windows.cpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\modules\juce_core\text\juce_CharacterFunctions.cpp">
       <Filter>Juce Modules\juce_core\text</Filter>
@@ -456,6 +463,21 @@
     <ClCompile Include="..\..\modules\juce_core\native\juce_linux_Threads.cpp">
       <Filter>Juce Modules\juce_core\native</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\modules\juce_core\native\juce_mac_Files.mm">
+      <Filter>Juce Modules\juce_core\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_core\native\juce_mac_Network.mm">
+      <Filter>Juce Modules\juce_core\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_core\native\juce_mac_Strings.mm">
+      <Filter>Juce Modules\juce_core\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_core\native\juce_mac_SystemStats.mm">
+      <Filter>Juce Modules\juce_core\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_core\native\juce_mac_Threads.mm">
+      <Filter>Juce Modules\juce_core\native</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\modules\juce_core\native\juce_posix_NamedPipe.cpp">
       <Filter>Juce Modules\juce_core\native</Filter>
     </ClCompile>
@@ -543,7 +565,13 @@
     <ClCompile Include="..\..\modules\juce_events\native\juce_android_Messaging.cpp">
       <Filter>Juce Modules\juce_events\native</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\modules\juce_events\native\juce_ios_MessageManager.mm">
+      <Filter>Juce Modules\juce_events\native</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\modules\juce_events\native\juce_linux_Messaging.cpp">
+      <Filter>Juce Modules\juce_events\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_events\native\juce_mac_MessageManager.mm">
       <Filter>Juce Modules\juce_events\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\modules\juce_events\native\juce_win32_Messaging.cpp">
@@ -643,6 +671,12 @@
       <Filter>Juce Modules\juce_graphics\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\modules\juce_graphics\native\juce_linux_Fonts.cpp">
+      <Filter>Juce Modules\juce_graphics\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_graphics\native\juce_mac_CoreGraphicsContext.mm">
+      <Filter>Juce Modules\juce_graphics\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_graphics\native\juce_mac_Fonts.mm">
       <Filter>Juce Modules\juce_graphics\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\modules\juce_graphics\native\juce_win32_Direct2DGraphicsContext.cpp">
@@ -993,6 +1027,12 @@
     <ClCompile Include="..\..\modules\juce_gui_basics\native\juce_android_Windowing.cpp">
       <Filter>Juce Modules\juce_gui_basics\native</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\modules\juce_gui_basics\native\juce_ios_UIViewComponentPeer.mm">
+      <Filter>Juce Modules\juce_gui_basics\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_gui_basics\native\juce_ios_Windowing.mm">
+      <Filter>Juce Modules\juce_gui_basics\native</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\modules\juce_gui_basics\native\juce_linux_Clipboard.cpp">
       <Filter>Juce Modules\juce_gui_basics\native</Filter>
     </ClCompile>
@@ -1000,6 +1040,21 @@
       <Filter>Juce Modules\juce_gui_basics\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\modules\juce_gui_basics\native\juce_linux_Windowing.cpp">
+      <Filter>Juce Modules\juce_gui_basics\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_gui_basics\native\juce_mac_FileChooser.mm">
+      <Filter>Juce Modules\juce_gui_basics\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_gui_basics\native\juce_mac_MainMenu.mm">
+      <Filter>Juce Modules\juce_gui_basics\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_gui_basics\native\juce_mac_MouseCursor.mm">
+      <Filter>Juce Modules\juce_gui_basics\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_gui_basics\native\juce_mac_NSViewComponentPeer.mm">
+      <Filter>Juce Modules\juce_gui_basics\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_gui_basics\native\juce_mac_Windowing.mm">
       <Filter>Juce Modules\juce_gui_basics\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\modules\juce_gui_basics\native\juce_win32_DragAndDrop.cpp">
@@ -1059,13 +1114,25 @@
     <ClCompile Include="..\..\modules\juce_gui_extra\native\juce_android_WebBrowserComponent.cpp">
       <Filter>Juce Modules\juce_gui_extra\native</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\modules\juce_gui_extra\native\juce_ios_UIViewComponent.mm">
+      <Filter>Juce Modules\juce_gui_extra\native</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\modules\juce_gui_extra\native\juce_linux_SystemTrayIcon.cpp">
       <Filter>Juce Modules\juce_gui_extra\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\modules\juce_gui_extra\native\juce_linux_WebBrowserComponent.cpp">
       <Filter>Juce Modules\juce_gui_extra\native</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\modules\juce_gui_extra\native\juce_mac_AppleRemote.mm">
+      <Filter>Juce Modules\juce_gui_extra\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_gui_extra\native\juce_mac_NSViewComponent.mm">
+      <Filter>Juce Modules\juce_gui_extra\native</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\modules\juce_gui_extra\native\juce_mac_SystemTrayIcon.cpp">
+      <Filter>Juce Modules\juce_gui_extra\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\juce_gui_extra\native\juce_mac_WebBrowserComponent.mm">
       <Filter>Juce Modules\juce_gui_extra\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\modules\juce_gui_extra\native\juce_win32_ActiveXComponent.cpp">
@@ -1077,7 +1144,7 @@
     <ClCompile Include="..\..\modules\juce_gui_extra\native\juce_win32_WebBrowserComponent.cpp">
       <Filter>Juce Modules\juce_gui_extra\native</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp">
+    <ClCompile Include="..\..\modules\g3logger\g3logger.cpp">
       <Filter>Juce Library Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\modules\juce_core\juce_core.cpp">
@@ -1109,62 +1176,65 @@
     <ClInclude Include="..\..\Source\PoolJob.h">
       <Filter>JuceApp\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\active.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\crashhandler.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\g2filesink.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\g2future.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\g2log.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\g2loglevels.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\g2logmessage.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\g2logmessagecapture.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\g2logworker.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\g2moveoncopy.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\g2sink.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\g2sinkhandle.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\g2sinkwrapper.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\g2time.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\shared_queue.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\stacktrace_windows.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\std2_make_unique.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\g3log\stlpatch_future.hpp">
-      <Filter>JuceApp\Source\g3log</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\MainComponent.h">
       <Filter>JuceApp\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\active.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\crashhandler.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\g2filesink.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\g2future.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\g2log.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\g2loglevels.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\g2logmessage.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\g2logmessagecapture.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\g2logworker.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\g2moveoncopy.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\g2sink.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\g2sinkhandle.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\g2sinkwrapper.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\g2time.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\shared_queue.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\stacktrace_windows.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\std2_make_unique.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\core\stlpatch_future.hpp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\g3logger\g3logger.h">
+      <Filter>Juce Modules\g3logger</Filter>
     </ClInclude>
     <ClInclude Include="..\..\modules\juce_core\text\juce_CharacterFunctions.h">
       <Filter>Juce Modules\juce_core\text</Filter>
@@ -2189,16 +2259,16 @@
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h">
       <Filter>Juce Library Code</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h">
-      <Filter>Juce Library Code</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>Juce Library Code</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Source\g3log\g2filesinkhelper.ipp">
-      <Filter>JuceApp\Source\g3log</Filter>
+    <None Include="..\..\modules\g3logger\core\g2filesinkhelper.ipp">
+      <Filter>Juce Modules\g3logger\core</Filter>
+    </None>
+    <None Include="..\..\modules\g3logger\juce_module_info">
+      <Filter>Juce Modules\g3logger</Filter>
     </None>
     <None Include="..\..\modules\juce_core\juce_module_info">
       <Filter>Juce Modules\juce_core</Filter>

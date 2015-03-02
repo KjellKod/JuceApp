@@ -9,51 +9,6 @@
         <FILE id="YQF3AU" name="ThreadPool.h" compile="0" resource="0" file="Source/threadPool/ThreadPool.h"/>
       </GROUP>
       <FILE id="Bopv6z" name="PoolJob.h" compile="0" resource="0" file="Source/PoolJob.h"/>
-      <GROUP id="{C3ED0559-9ED5-AAA9-E012-C5AED85909CC}" name="g3log">
-        <FILE id="XUbvXQ" name="active.hpp" compile="0" resource="0" file="Source/g3log/active.hpp"/>
-        <FILE id="brllDl" name="crashhandler.hpp" compile="0" resource="0"
-              file="Source/g3log/crashhandler.hpp"/>
-        <FILE id="sKD59c" name="crashhandler_windows.cpp" compile="1" resource="0"
-              file="Source/g3log/crashhandler_windows.cpp"/>
-        <FILE id="IWN9En" name="g2filesink.cpp" compile="1" resource="0" file="Source/g3log/g2filesink.cpp"/>
-        <FILE id="VcuCXG" name="g2filesink.hpp" compile="0" resource="0" file="Source/g3log/g2filesink.hpp"/>
-        <FILE id="aBnQwt" name="g2filesinkhelper.ipp" compile="0" resource="1"
-              file="Source/g3log/g2filesinkhelper.ipp"/>
-        <FILE id="KYYEj8" name="g2future.hpp" compile="0" resource="0" file="Source/g3log/g2future.hpp"/>
-        <FILE id="d7z6I4" name="g2log.cpp" compile="1" resource="0" file="Source/g3log/g2log.cpp"/>
-        <FILE id="NsNTOF" name="g2log.hpp" compile="0" resource="0" file="Source/g3log/g2log.hpp"/>
-        <FILE id="J5Dfnz" name="g2loglevels.cpp" compile="1" resource="0" file="Source/g3log/g2loglevels.cpp"/>
-        <FILE id="oaipsC" name="g2loglevels.hpp" compile="0" resource="0" file="Source/g3log/g2loglevels.hpp"/>
-        <FILE id="us6bQX" name="g2logmessage.cpp" compile="1" resource="0"
-              file="Source/g3log/g2logmessage.cpp"/>
-        <FILE id="awOhbL" name="g2logmessage.hpp" compile="0" resource="0"
-              file="Source/g3log/g2logmessage.hpp"/>
-        <FILE id="Ht2hxx" name="g2logmessagecapture.cpp" compile="1" resource="0"
-              file="Source/g3log/g2logmessagecapture.cpp"/>
-        <FILE id="NHh8qc" name="g2logmessagecapture.hpp" compile="0" resource="0"
-              file="Source/g3log/g2logmessagecapture.hpp"/>
-        <FILE id="LMXtY1" name="g2logworker.cpp" compile="1" resource="0" file="Source/g3log/g2logworker.cpp"/>
-        <FILE id="hZCxY5" name="g2logworker.hpp" compile="0" resource="0" file="Source/g3log/g2logworker.hpp"/>
-        <FILE id="OonCnX" name="g2moveoncopy.hpp" compile="0" resource="0"
-              file="Source/g3log/g2moveoncopy.hpp"/>
-        <FILE id="HbRNi3" name="g2sink.hpp" compile="0" resource="0" file="Source/g3log/g2sink.hpp"/>
-        <FILE id="Okr6Fv" name="g2sinkhandle.hpp" compile="0" resource="0"
-              file="Source/g3log/g2sinkhandle.hpp"/>
-        <FILE id="seyV9b" name="g2sinkwrapper.hpp" compile="0" resource="0"
-              file="Source/g3log/g2sinkwrapper.hpp"/>
-        <FILE id="jzOYXm" name="g2time.cpp" compile="1" resource="0" file="Source/g3log/g2time.cpp"/>
-        <FILE id="CV3WnZ" name="g2time.hpp" compile="0" resource="0" file="Source/g3log/g2time.hpp"/>
-        <FILE id="DKz6yo" name="shared_queue.hpp" compile="0" resource="0"
-              file="Source/g3log/shared_queue.hpp"/>
-        <FILE id="L9maqQ" name="stacktrace_windows.cpp" compile="1" resource="0"
-              file="Source/g3log/stacktrace_windows.cpp"/>
-        <FILE id="AuCeTq" name="stacktrace_windows.hpp" compile="0" resource="0"
-              file="Source/g3log/stacktrace_windows.hpp"/>
-        <FILE id="GK9OqR" name="std2_make_unique.hpp" compile="0" resource="0"
-              file="Source/g3log/std2_make_unique.hpp"/>
-        <FILE id="RQayxo" name="stlpatch_future.hpp" compile="0" resource="0"
-              file="Source/g3log/stlpatch_future.hpp"/>
-      </GROUP>
       <FILE id="AJPc1J" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
       <FILE id="Gb1422" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
@@ -76,6 +31,7 @@
         <MODULEPATH id="juce_gui_basics" path="modules"/>
         <MODULEPATH id="juce_gui_extra" path="modules"/>
         <MODULEPATH id="juce_cryptography" path="modules"/>
+        <MODULEPATH id="g3logger" path="modules"/>
       </MODULEPATHS>
     </VS2013>
     <XCODE_MAC targetFolder="Builds/MacOSX">
@@ -93,10 +49,12 @@
         <MODULEPATH id="juce_data_structures" path="modules"/>
         <MODULEPATH id="juce_cryptography" path="modules"/>
         <MODULEPATH id="juce_core" path="modules"/>
+        <MODULEPATH id="g3logger" path="modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
   <MODULES>
+    <MODULES id="g3logger" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_core" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>

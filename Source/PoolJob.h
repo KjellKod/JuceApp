@@ -1,9 +1,7 @@
 #pragma once
 
 #include "MainComponent.h"
-#include "g3log/g2logworker.hpp"
-#include "g3log/g2log.hpp"
-#include "g3log/crashhandler.hpp"
+
 
 typedef MainComponent::MenuIDs CrashType;
 typedef MainComponent::State CrashState;
