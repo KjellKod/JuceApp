@@ -14,6 +14,7 @@
 #define __APPHEADERFILE_ARRVBM__
 
 #include "AppConfig.h"
+#include "modules/g3logger/g3logger.h"
 #include "modules/juce_core/juce_core.h"
 #include "modules/juce_cryptography/juce_cryptography.h"
 #include "modules/juce_data_structures/juce_data_structures.h"
@@ -21,7 +22,6 @@
 #include "modules/juce_graphics/juce_graphics.h"
 #include "modules/juce_gui_basics/juce_gui_basics.h"
 #include "modules/juce_gui_extra/juce_gui_extra.h"
-#include "BinaryData.h"
 
 #if ! DONT_SET_USING_JUCE_NAMESPACE
  // If your code uses a lot of JUCE classes, then this will obviously save you

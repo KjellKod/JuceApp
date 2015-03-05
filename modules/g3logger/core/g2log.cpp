@@ -24,6 +24,8 @@
 #include <csignal>
 #include <memory>
 #include <iostream>
+#include <thread>
+#include <atomic>
 
 #include "std2_make_unique.hpp"
 #include "g2logworker.hpp"
@@ -38,7 +40,11 @@ std::mutex g_logging_init_mutex;
 std::unique_ptr<g2::LogMessage> g_first_unintialized_msg = {nullptr};
 std::once_flag g_set_first_uninitialized_flag;
 std::once_flag g_save_first_unintialized_flag;
+const std::function<void(void)> g_pre_fatal_hook_that_does_nothing = []{ /*does nothing */};
+std::function<void(void)> g_fatal_pre_logging_hook;
 
+
+std::atomic<size_t> g_fatal_hook_recursive_counter = {0};
 }
 
 
@@ -52,7 +58,7 @@ namespace g2 {
 //                    for all other practical use, it shouldn't!
 
 void initializeLogging(LogWorker* bgworker) {
-   std::call_once(g_initialize_flag, []() {
+   std::call_once(g_initialize_flag, [] {
       installCrashHandler();
    });
    std::lock_guard<std::mutex> lock(g_logging_init_mutex);
@@ -67,6 +73,38 @@ void initializeLogging(LogWorker* bgworker) {
    });
 
    g_logger_instance = bgworker;
+   // by default the pre fatal logging hook does nothing
+   // if it WOULD do something it would happen in 
+   setFatalPreLoggingHook(g_pre_fatal_hook_that_does_nothing); 
+   // recurvise crash counter re-set to zero
+   g_fatal_hook_recursive_counter.store(0);
+}
+
+
+/**
+*  default does nothing, @ref ::g_pre_fatal_hook_that_does_nothing
+*  It will be called just before sending the fatal message, @ref pushFatalmessageToLogger
+*  It will be reset to do nothing in ::initializeLogging(...)
+*     so please call this function, if you ever need to, after initializeLogging(...)
+*/
+void setFatalPreLoggingHook(std::function<void(void)>  pre_fatal_hook) {
+   static std::mutex m;
+   std::lock_guard<std::mutex> lock(m);
+   g_fatal_pre_logging_hook = pre_fatal_hook;
+}
+
+
+
+
+// By default this function pointer goes to \ref pushFatalMessageToLogger;
+std::function<void(FatalMessagePtr) > g_fatal_to_g2logworker_function_ptr = internal::pushFatalMessageToLogger;
+
+/** REPLACE fatalCallToLogger for fatalCallForUnitTest
+ * This function switches the function pointer so that only
+ * 'unitTest' mock-fatal calls are made.
+ * */
+void setFatalExitHandler(std::function<void(FatalMessagePtr) > fatal_call) {
+   g_fatal_to_g2logworker_function_ptr = fatal_call;
 }
 
 
@@ -108,6 +146,7 @@ bool shutDownLoggingForActiveOnly(LogWorker* active) {
 
 
 
+
 /** explicits copy of all input. This is makes it possibly to use g3log across dynamically loaded libraries
 * i.e. (dlopen + dlsym)  */
 void saveMessage(const char* entry, const char* file, int line, const char* function, const LEVELS& level,
@@ -117,9 +156,27 @@ void saveMessage(const char* entry, const char* file, int line, const char* func
    message.get()->write().append(entry);
    message.get()->setExpression(boolean_expression);
 
+
    if (internal::wasFatal(level)) {
+      auto fatalhook = g_fatal_pre_logging_hook;
+      // In case the fatal_pre logging actually will cause a crash in its turn
+      // let's not do recursive crashing!
+      setFatalPreLoggingHook(g_pre_fatal_hook_that_does_nothing);
+      ++g_fatal_hook_recursive_counter; // thread safe counter
+      // "benign" race here. If two threads crashes, with recursive crashes
+      // then it's possible that the "other" fatal stack trace will be shown
+      // that's OK since it was anyhow the first crash detected
+      static const std::string first_stack_trace = stack_trace;
+      fatalhook();
       message.get()->write().append(stack_trace);
-      FatalMessagePtr fatal_message {std2::make_unique<FatalMessage>(*(message._move_only.get()), fatal_signal)};
+
+      if (g_fatal_hook_recursive_counter.load() > 1) {
+         message.get()->write()
+            .append("\n\n\nWARNING\n"
+            "A recursive crash detected. It is likely the hook set with 'setFatalPreLoggingHook(...)' is responsible\n\n")
+            .append("---First crash stacktrace: ").append(first_stack_trace).append("\n---End of first stacktrace\n");
+      }
+      FatalMessagePtr fatal_message{ std2::make_unique<FatalMessage>(*(message._move_only.get()), fatal_signal) };
       // At destruction, flushes fatal message to g2LogWorker
       // either we will stay here until the background worker has received the fatal
       // message, flushed the crash message to the sinks and exits with the same fatal signal
@@ -177,10 +234,6 @@ void pushFatalMessageToLogger(FatalMessagePtr message) {
    }
 }
 
-
-// By default this function pointer goes to \ref pushFatalMessageToLogger;
-std::function<void(FatalMessagePtr) > g_fatal_to_g2logworker_function_ptr = pushFatalMessageToLogger;
-
 /** The default, initial, handling to send a 'fatal' event to g2logworker
  *  the caller will stay here, eternally, until the software is aborted
  * ... in the case of unit testing it is the given "Mock" fatalCall that will
@@ -190,13 +243,7 @@ void fatalCall(FatalMessagePtr message) {
    g_fatal_to_g2logworker_function_ptr(FatalMessagePtr {std::move(message)});
 }
 
-/** REPLACE fatalCallToLogger for fatalCallForUnitTest
- * This function switches the function pointer so that only
- * 'unitTest' mock-fatal calls are made.
- * */
-void setFatalExitHandler(std::function<void(FatalMessagePtr) > fatal_call) {
-   g_fatal_to_g2logworker_function_ptr = fatal_call;
-}
+
 } // internal
 } // g2
 

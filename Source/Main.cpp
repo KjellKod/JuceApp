@@ -2,9 +2,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "MainComponent.h"
 
-#include "g3log/g2logworker.hpp"
-#include "g3log/g2log.hpp"
-#include "g3log/g2logmessage.hpp"
+
 
 const String SAVED_WORK = "SavedWorkd.txt";
 
@@ -54,7 +52,10 @@ public:
 
 		logger_ = new LogHolder(getApplicationName().toStdString(), desktop.getFullPathName().toStdString());
 
-		g2::internal::setFatalExitHandler(&JuceAppApplication::onFatalError);
+		g2::setFatalExitHandler(&JuceAppApplication::onFatalError);
+#if JUCE_WINDOWS
+		g2::setFatalPreLoggingHook([]{__debugbreak(); });
+#endif
 
 		LOG(DBUG) << "Hello World!";
     }

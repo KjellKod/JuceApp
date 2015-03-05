@@ -102,7 +102,9 @@ void MainComponent::menuItemSelected(int menuID, int index)
 
 void MainComponent::timerCallback() 
 {
-	pool_.addJob(new PoolJob(fatalChoice_, state_), true);
+	//pool_.addJob(new PoolJob(fatalChoice_, state_), true);
+
+	pool_.enqueue(poolFunc, fatalChoice_, state_);
 }
 
 void MainComponent::buttonClicked(Button* button)
